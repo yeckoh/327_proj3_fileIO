@@ -30,6 +30,7 @@ int KP_FileIO::getFileContents(const string &filename, string &contents)
 		getline(fin, line);
 		contents.append(line);
 	}
+	fin.close();
 	return SUCCESS;
 }
 
@@ -39,7 +40,16 @@ int KP_FileIO::getFileContents(const string &filename, string &contents)
 //COULD_NOT_OPEN_FILE_TO_WRITE
 int KP_FileIO::writeVectortoFile(const string filename, vector<string> &myEntryVector)
 {
-	return FAIL;
+	fstream fout;
+
+	fout.open(filename.c_str());
+	if(!fout.is_open())
+		return COULD_NOT_OPEN_FILE_TO_WRITE;
+
+	for(vector<string>::iterator itr; itr != myEntryVector.end(); ++itr)
+		fout << itr;
+	fout.close();
+	return SUCCESS;
 }
 
 
