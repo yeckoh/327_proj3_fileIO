@@ -20,7 +20,7 @@ int KP_FileIO::getFileContents(const string &filename, string &contents)
 {
 	fstream fin;
 
-	fin.open(filename.c_str(), ios::in);
+	fin.open(filename.c_str());
 	if(!fin.is_open())
 		return COULD_NOT_OPEN_FILE_TO_READ;
 
