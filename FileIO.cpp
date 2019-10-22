@@ -46,8 +46,11 @@ int KP_FileIO::writeVectortoFile(const string filename, vector<string> &myEntryV
 	if(!fout.is_open())
 		return COULD_NOT_OPEN_FILE_TO_WRITE;
 
-	for(vector<string>::iterator itr; itr != myEntryVector.end(); ++itr)
-		fout << itr;
+	for(int i = 0;i < myEntryVector.size();++i) {
+		if(myEntryVector[i] == "")
+			continue;
+		fout << myEntryVector[i] << endl;
+	}
 	fout.close();
 	return SUCCESS;
 }
